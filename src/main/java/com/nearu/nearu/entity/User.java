@@ -32,8 +32,7 @@ public class User {
     @Column(name = "user_id", unique = true)
     private String userId;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     private UserInfo userInfo;
 
     public User() {

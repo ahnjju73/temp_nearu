@@ -27,7 +27,7 @@ public class UserController extends OriginObject {
 
     @SessionMapper
     @Transactional
-    @PostMapping("/hello-world")
+    @GetMapping("/hello-world")
     public User helloWorld(SessionRequest request) {
         return request.getSession();
     }
@@ -36,7 +36,7 @@ public class UserController extends OriginObject {
     @Transactional
     @PostMapping("/check-duplication")
     public Map checkDup(SessionRequest request) {
-        String id = (String)request.getParam().get("id");
+        String id = (String)request.getParam().get("user_id");
         Map<String, Boolean> res = new HashMap<>();
         res.put("is_duplicated", userService.isDup(id));
         return res;
@@ -59,7 +59,7 @@ public class UserController extends OriginObject {
         UserDto loginEmailRequest = map(request.getParam(), UserDto.class);
         UserPw userPasswordByUserEmail = userPasswordsRepository.findByUser_UserId(loginEmailRequest.getUserId());
         if(!bePresent(userPasswordByUserEmail))
-            withException(""); //존재하지않는 아이디
+            withException("100-002"); //존재하지않는 아이디
         userPasswordByUserEmail.loginWithPassword(loginEmailRequest.getPassword());
         User users = userPasswordByUserEmail.getUser();
 //        User users = null;
