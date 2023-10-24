@@ -10,5 +10,4 @@ import lombok.Setter;
 public class ApplicationReadAllResponse {
     private String name;
     private Application app;
-    private Integer numberApplicants;
 }

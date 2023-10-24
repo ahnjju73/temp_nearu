@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'it.aimeets.pubdata-api'
+group = 'it.nearu.nearu'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 

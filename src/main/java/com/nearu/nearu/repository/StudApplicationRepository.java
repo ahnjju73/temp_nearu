@@ -12,4 +12,5 @@ public interface StudApplicationRepository extends JpaRepository<StudApplication
     void deleteByApplicationNoAndUserNo(Integer applicationNo, Integer userNo);
     Integer countAllByApplicationNo(Integer applicationNo);
     ArrayList<StudApplication> findAllByApplicationNo(Integer applicationNo);
+    ArrayList<StudApplication> findAllByUserNo(Integer userNo);
 }

@@ -3,6 +3,7 @@ package com.nearu.nearu.controller;
 import com.nearu.nearu.OriginObject;
 import com.nearu.nearu.SessionRequest;
 import com.nearu.nearu.config.flows.SessionMapper;
+import com.nearu.nearu.entity.StudApplication;
 import com.nearu.nearu.object.request.ApplicationDto;
 import com.nearu.nearu.object.request.StudApplicationDto;
 import com.nearu.nearu.services.ApplicationService;
@@ -81,6 +82,13 @@ public class ApplicationController extends OriginObject {
     public ArrayList<Application> viewMyApplications (SessionRequest request) {
         ApplicationDto map = map(request.getParam(), ApplicationDto.class);
         return applicationService.fetchAllByAdmin(request.getSession());
+    }
+
+    @SessionMapper
+    @GetMapping("/my-applied-applications")
+    public ArrayList<StudApplication> viewMyApplicationsStudent (SessionRequest request) {
+        ApplicationDto map = map(request.getParam(), ApplicationDto.class);
+        return applicationService.fetchAllByPatient(request.getSession());
     }
 
     @SessionMapper

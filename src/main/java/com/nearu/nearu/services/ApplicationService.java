@@ -104,7 +104,6 @@ public class ApplicationService extends OriginObject {
         for(int i = 0; i<arrList.size(); i++){
             ApplicationReadAllResponse res = new ApplicationReadAllResponse();
             res.setApp(arrList.get(i));
-            res.setNumberApplicants(studApplicationRepository.countAllByApplicationNo(arrList.get(i).getApplicationNo()));
             Integer userNo = arrList.get(i).getAdminNo();
             res.setName(userInfoRepository.findByUserNo(userNo).getName());
             list.add(res);
@@ -154,6 +153,11 @@ public class ApplicationService extends OriginObject {
         Integer adminNo = session.getUserNo();
         return applicationRepository.findAllByAdminNo(adminNo);
      }
+
+    public ArrayList<StudApplication> fetchAllByPatient(User session){
+        Integer adminNo = session.getUserNo();
+        return studApplicationRepository.findAllByUserNo(session.getUserNo());
+    }
 
      public Application fetch(Integer applicationNo){
         return applicationRepository.findByApplicationNo(applicationNo);
