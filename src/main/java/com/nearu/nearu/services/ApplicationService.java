@@ -104,6 +104,10 @@ public class ApplicationService extends OriginObject {
         for(int i = 0; i<arrList.size(); i++){
             ApplicationReadAllResponse res = new ApplicationReadAllResponse();
             res.setApp(arrList.get(i));
+            if(res.getApp().getStatus()){
+                ArrayList<StudApplication> allByApplicationNo = studApplicationRepository.findAllByApplicationNo(res.getApp().getApplicationNo());
+                res.setVolunteer(allByApplicationNo.get(i).getUser());
+            }
             Integer userNo = arrList.get(i).getAdminNo();
             res.setName(userInfoRepository.findByUserNo(userNo).getName());
             list.add(res);
