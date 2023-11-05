@@ -99,14 +99,14 @@ public class ApplicationService extends OriginObject {
     }
 
     public ArrayList<ApplicationReadAllResponse> fetchAllApplications(){
-        ArrayList<Application> arrList = (ArrayList<Application>) applicationRepository.findAll();
+        ArrayList<Application> arrList = (ArrayList<Application>) applicationRepository.findAllByDDayBeforeOrderByDDayAsc();
         ArrayList<ApplicationReadAllResponse> list = new ArrayList<>();
         for(int i = 0; i<arrList.size(); i++){
             ApplicationReadAllResponse res = new ApplicationReadAllResponse();
             res.setApp(arrList.get(i));
             if(res.getApp().getStatus()){
                 ArrayList<StudApplication> allByApplicationNo = studApplicationRepository.findAllByApplicationNo(res.getApp().getApplicationNo());
-                res.setVolunteer(allByApplicationNo.get(i).getUser());
+                res.setVolunteer(allByApplicationNo.get(0).getUser());
             }
             Integer userNo = arrList.get(i).getAdminNo();
             res.setName(userInfoRepository.findByUserNo(userNo).getName());

@@ -77,6 +77,8 @@ public class ApplicationController extends OriginObject {
         applicationService.deleteStudApplication(map.getApplicationNo(), map.getUserNo());
     }
 
+
+
     @SessionMapper
     @GetMapping("/my-applications")
     public ArrayList<Application> viewMyApplications (SessionRequest request) {
